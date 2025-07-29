@@ -29,7 +29,6 @@ def save_tasks(tasks):
     with open(TASK_FILE, 'w') as file:
         json.dump(tasks, file, indent=4)
 
-# Add new task
 def add_task():
     task = simpledialog.askstring("New Task", "Enter your task:")
     if task:
@@ -37,7 +36,6 @@ def add_task():
         save_tasks(tasks)
         messagebox.showinfo("Task Added", f"'{task}' added to your list.")
 
-# Show all tasks
 def show_tasks():
     if not tasks:
         messagebox.showinfo("Tasks", "No tasks added.")
@@ -45,13 +43,10 @@ def show_tasks():
         task_text = "\n".join([f"- {t['task']}" for t in tasks])
         messagebox.showinfo("Your Tasks", task_text)
 
-# Show motivational quote
 def show_quote():
     quote = random.choice(quotes)
     display_message(f"{quote}")
 
-
-# You can replace this with a real API call
 def show_weather():
     from tkinter import simpledialog
     city = simpledialog.askstring("Weather", "Enter your city name:")
@@ -67,7 +62,7 @@ def show_weather():
             display_message("Could not retrieve weather.")
     except Exception as e:
         display_message("❌ Network error.")
-# Chatbot response logic
+
 def handle_input():
     user_input = input_box.get()
     chat_log.insert(tk.END, f"You: {user_input}")
@@ -97,11 +92,9 @@ def handle_input():
 
     input_box.delete(0, tk.END)
 
-# Helper to display message
 def display_message(msg):
     chat_log.insert(tk.END, f"Bot: {msg}")
 
-# GUI Setup
 root = tk.Tk()
 root.title("Day-to-Day Life Assistant")
 root.geometry("500x500")
